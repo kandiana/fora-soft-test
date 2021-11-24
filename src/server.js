@@ -1,20 +1,27 @@
 require('dotenv').config();
 
 const express = require('express');
-const http = require('http');
+const mongoClient = require('./db');
+const setupMiddlewares = require('./middlewares');
 
-const { PORT } = require('./config');
 const { mainRouter } = require('./routers');
-const ws = require('./sockets');
 
 const app = express();
 
-// main routes
-app.use('/', mainRouter);
-
-const server = http.createServer(app);
-ws(server);
-
-server.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
+// connect to database and if succeeded start server and sockets
+let db;
+mongoClient(app).then((database) => {
+  db = database;
 });
+
+// save db link to request parameters
+app.use((req, _, next) => {
+  req.db = db;
+  next();
+});
+
+// setup other middlewares
+setupMiddlewares(app);
+
+// main routes (ping, front)
+app.use('/', mainRouter);

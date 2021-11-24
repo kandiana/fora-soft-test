@@ -1,6 +1,6 @@
 const { Server } = require('socket.io');
 
-module.exports = (server) => {
+module.exports = (server, db) => {
   const io = new Server(server);
   const history = {};
   const clients = {};

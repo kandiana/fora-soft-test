@@ -5,14 +5,17 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/server",
-    "dev": "nodemon src/server",
+    "build": "cd client && npm run build && cd ..",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "dev": "cross-env NODE_ENV=development nodemon src/server",
+    "prod": "npm run build && cross-env NODE_ENV=production npm start"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "cross-env": "7.0.3",
     "dotenv": "10.0.0",
     "eslint": "7.11.0",
     "husky": "7.0.4",
@@ -27,6 +30,7 @@
   "dependencies": {
     "express": "4.17.1",
     "http-proxy-middleware": "2.0.1",
+    "mongodb": "4.2.0",
     "socket.io": "4.4.0"
   }
 }
