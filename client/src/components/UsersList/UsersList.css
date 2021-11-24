@@ -5,3 +5,11 @@
   padding: 10px;
   list-style: none;
 }
+
+.UsersList__title {
+  margin-bottom: 10px;
+}
+
+.UsersList__you {
+  font-weight: 700;
+}

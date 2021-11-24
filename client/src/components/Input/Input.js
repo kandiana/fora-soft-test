@@ -3,6 +3,7 @@ import './Input.css';
 export const Input = ({
   id,
   name,
+  value,
   type = 'text',
   placeholder = '',
   required = false,
@@ -13,6 +14,7 @@ export const Input = ({
       className="Input"
       id={id}
       name={name}
+      value={value}
       type={type}
       placeholder={placeholder}
       required={required}

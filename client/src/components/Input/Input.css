@@ -1,5 +1,6 @@
 .Input {
   height: 40px;
+  width: 100%;
   margin: 5px;
   padding: 10px;
   border: 2px solid gray;

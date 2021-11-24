@@ -8,5 +8,11 @@
 
 .Message__header {
   display: flex;
+  gap: 5px;
   margin-bottom: 5px;
+  font-size: 12px;
+}
+
+.Message__author {
+  font-weight: 700;
 }

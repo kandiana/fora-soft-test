@@ -1,70 +1,10 @@
+import { useSelector } from 'react-redux';
 import { Message } from '../Message/Message';
 
 import './MessagesList.css';
 
 export const MessagesList = () => {
-  const messages = [
-    {
-      username: 'user1',
-      timestamp: Date.now().toLocaleString,
-      text: 'Lorem ispum dolor',
-    },
-    {
-      username: 'user2',
-      timestamp: Date.now().toLocaleString,
-      text: 'Lorem ispum dolor',
-    },
-    {
-      username: 'user1',
-      timestamp: Date.now().toLocaleString,
-      text: 'Lorem ispum dolor',
-    },
-    {
-      username: 'user3',
-      timestamp: Date.now().toLocaleString,
-      text: 'Lorem ispum dolor',
-    },
-    {
-      username: 'user1',
-      timestamp: Date.now().toLocaleString,
-      text: 'Lorem ispum dolor',
-    },
-    {
-      username: 'user2',
-      timestamp: Date.now().toLocaleString,
-      text: 'Lorem ispum dolor',
-    },
-    {
-      username: 'user1',
-      timestamp: Date.now().toLocaleString,
-      text: 'Lorem ispum dolor',
-    },
-    {
-      username: 'user3',
-      timestamp: Date.now().toLocaleString,
-      text: 'Lorem ispum dolor',
-    },
-    {
-      username: 'user1',
-      timestamp: Date.now().toLocaleString,
-      text: 'Lorem ispum dolor',
-    },
-    {
-      username: 'user2',
-      timestamp: Date.now().toLocaleString,
-      text: 'Lorem ispum dolor',
-    },
-    {
-      username: 'user1',
-      timestamp: Date.now().toLocaleString,
-      text: 'Lorem ispum dolor',
-    },
-    {
-      username: 'user3',
-      timestamp: Date.now().toLocaleString,
-      text: 'Lorem ispum dolor',
-    },
-  ];
+  const messages = useSelector((state) => state.messagesList);
 
   return (
     <ul className="MessagesList">
@@ -72,7 +12,7 @@ export const MessagesList = () => {
         <Message
           key={`${i}_${message.username}_${message.timestamp}`}
           username={message.username}
-          date={message.timestamp}
+          timestamp={message.timestamp}
           text={message.text}
         />
       ))}
