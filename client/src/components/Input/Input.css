@@ -1,0 +1,11 @@
+.Input {
+  height: 40px;
+  margin: 5px;
+  padding: 10px;
+  border: 2px solid gray;
+  border-radius: 5px;
+}
+
+.Input:focus {
+  border-color: black;
+}

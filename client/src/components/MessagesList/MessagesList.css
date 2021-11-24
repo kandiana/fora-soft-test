@@ -1,0 +1,8 @@
+.MessagesList {
+  display: flex;
+  flex-direction: column-reverse;
+  height: 100%;
+  padding: 10px;
+  list-style: none;
+  overflow: auto;
+}

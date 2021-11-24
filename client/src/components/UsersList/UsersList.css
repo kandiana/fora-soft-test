@@ -1,0 +1,7 @@
+.UsersList {
+  min-width: 200px;
+  width: 10%;
+  height: 100%;
+  padding: 10px;
+  list-style: none;
+}
