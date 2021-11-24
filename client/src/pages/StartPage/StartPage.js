@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { nanoid } from 'nanoid';
 
 import { createSocketInstance } from '../../store/thunk';
 
@@ -10,16 +11,21 @@ import { Button } from '../../components/Button/Button';
 import './StartPage.css';
 
 export const StartPage = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
   const [username, setUsername] = useState('');
+
+  const { room } = useParams();
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    dispatch(createSocketInstance(username));
+    const userRoom = room || nanoid();
 
-    // navigate('/chatroom');
+    dispatch(createSocketInstance(username, userRoom));
+
+    navigate(`/${userRoom}`);
   };
 
   const handleChange = (event) => {

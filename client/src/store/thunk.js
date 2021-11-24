@@ -11,7 +11,7 @@ import {
   removeDisconnectedUser,
 } from './actions';
 
-export const createSocketInstance = (username) => {
+export const createSocketInstance = (username, room) => {
   return (dispatch, getState) => {
     if (getState().socket) {
       return;
@@ -19,10 +19,12 @@ export const createSocketInstance = (username) => {
 
     // create and save socket instance
     const socket = io();
+
     dispatch(saveSocketInstance(socket));
 
     // save username (locally and on server)
-    socket.emit('new user', username);
+    socket.emit('join room', JSON.stringify({ room, username }));
+    // socket.emit('new user', username);
     dispatch(saveUsername(username));
 
     // collect old data

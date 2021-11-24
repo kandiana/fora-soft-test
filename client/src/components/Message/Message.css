@@ -3,16 +3,20 @@
   margin: 5px 0;
   padding: 5px 10px;
   border-radius: 15px;
-  background-color: lightgray;
 }
 
 .Message__header {
   display: flex;
-  gap: 5px;
+  align-items: baseline;
   margin-bottom: 5px;
-  font-size: 12px;
 }
 
 .Message__author {
+  margin-right: 10px;
   font-weight: 700;
+}
+
+.Message__timestamp {
+  font-size: 12px;
+  opacity: 0.6;
 }

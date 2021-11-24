@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 import './Message.css';
 
 export const Message = ({ username, timestamp, text }) => {
-  const formattedTimestamp = format(timestamp, 'HH:mm dd.MM');
+  const formattedTimestamp = format(timestamp, 'dd.MM, HH:mm');
 
   return (
     <li className="Message">

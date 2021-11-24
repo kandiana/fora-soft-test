@@ -1,4 +1,4 @@
-// import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { StartPage } from './pages/StartPage/StartPage';
 import { ChatPage } from './pages/ChatPage/ChatPage';
 
@@ -10,11 +10,10 @@ function App() {
 
   return (
     <div className="App">
-      {user ? <ChatPage /> : <StartPage />}
-      {/* <Routes>
-        <Route path="/chatroom" element={<ChatPage />} />
-        <Route path="/" element={<StartPage />}></Route>
-      </Routes> */}
+      <Routes>
+        <Route path="/:room" element={user ? <ChatPage /> : <StartPage />} />
+        <Route path="/" element={<StartPage />} />
+      </Routes>
     </div>
   );
 }
