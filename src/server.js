@@ -14,8 +14,8 @@ mongoClient(app).then((database) => {
   db = database;
 });
 
-// save db link to request parameters
-app.use((req, _, next) => {
+// save db link to req.db
+app.use((req, res, next) => {
   req.db = db;
   next();
 });
@@ -23,5 +23,5 @@ app.use((req, _, next) => {
 // setup other middlewares
 setupMiddlewares(app);
 
-// main routes (ping, front)
-app.use('/', mainRouter);
+// setup routes
+app.use('/', mainRouter); // front

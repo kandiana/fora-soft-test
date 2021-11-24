@@ -11,12 +11,11 @@ import { Button } from '../../components/Button/Button';
 import './StartPage.css';
 
 export const StartPage = () => {
-  const navigate = useNavigate();
-
   const dispatch = useDispatch();
-  const [username, setUsername] = useState('');
-
+  const navigate = useNavigate();
   const { room } = useParams();
+
+  const [username, setUsername] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -42,7 +41,7 @@ export const StartPage = () => {
         required={true}
         onChange={handleChange}
       />
-      <Button>Join chat room</Button>
+      <Button>{room ? 'Join chat room' : 'Create chat room'}</Button>
     </form>
   );
 };
