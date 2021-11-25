@@ -14,6 +14,7 @@ apiRouter.get('/:room/users', api.readUsers);
 const mainRouter = new express.Router();
 
 mainRouter.get('/:room', checkRoom); // if room doesn't exist, redirects to '/'
+mainRouter.use('/:room', loadFront);
 mainRouter.use('/', loadFront);
 
 module.exports = {

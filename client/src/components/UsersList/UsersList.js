@@ -10,9 +10,6 @@ export const UsersList = () => {
       return;
     }
 
-    const userNames = Object.keys(users).map((key) => users[key]);
-    console.log(userNames.sort());
-
     return Object.keys(users)
       .map((key) => [key, users[key]])
       .sort((a, b) => {

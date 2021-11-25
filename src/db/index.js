@@ -13,7 +13,6 @@ module.exports = async (app) => {
     console.log(`MongoDB connected on ${DB_URL}`);
 
     const db = client.db(DB_NAME);
-    db.general = db.collection('general-chat');
 
     // start server
     const server = http.createServer(app);

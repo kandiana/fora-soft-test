@@ -24,7 +24,7 @@ export const getOldMessages = (room) => {
   return async (dispatch) => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/${room}/messages`
+        `${process.env.REACT_APP_API_URL}/${room}/messages?size=100`
       );
 
       const data = await response.json();
