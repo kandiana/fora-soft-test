@@ -33,23 +33,23 @@ module.exports = (server, db) => {
         return;
       }
 
-      socket.on('disconnect', async () => {
-        console.log('user disconnected');
-
-        if (clientRoom) {
-          await removeDataFromDocument(db, clientRoom, 'users', {
-            [clientId]: '',
-          });
-
-          io.to(clientRoom).emit('user disconnected', clientId);
-        } else {
-          console.log('problem');
-        }
-      });
-
       await addDataToDocument(db, clientRoom, 'users', userData);
 
       io.to(clientRoom).emit('new user', JSON.stringify(userData));
+    });
+
+    socket.on('disconnect', async () => {
+      console.log('user disconnected');
+
+      if (clientRoom) {
+        await removeDataFromDocument(db, clientRoom, 'users', {
+          [clientId]: '',
+        });
+
+        io.to(clientRoom).emit('user disconnected', clientId);
+      } else {
+        console.log('problem');
+      }
     });
 
     socket.on('chat message', async (message) => {

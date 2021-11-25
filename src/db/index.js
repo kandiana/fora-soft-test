@@ -10,7 +10,10 @@ module.exports = async (app) => {
   try {
     // connect to database
     client = await MongoClient.connect(DB_URL);
-    console.log(`MongoDB connected on ${DB_URL}`);
+
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`MongoDB connected on ${DB_URL}`);
+    }
 
     const db = client.db(DB_NAME);
 

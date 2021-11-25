@@ -41,7 +41,7 @@ export const StartPage = () => {
         required={true}
         onChange={handleChange}
       />
-      <Button>{room ? 'Join chat room' : 'Create chat room'}</Button>
+      <Button>Join chat room</Button>
     </form>
   );
 };
