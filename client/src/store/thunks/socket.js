@@ -19,7 +19,7 @@ export const createSocketInstance = ({ room, username, create }) => {
 
     // save user data to store after getting socket.client.id
     socket.on('id', (id) => {
-      dispatch(saveUserData({ room, name: username, id }));
+      dispatch(saveUserData({ room, id }));
     });
 
     // new data handlers
