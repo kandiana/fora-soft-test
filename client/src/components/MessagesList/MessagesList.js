@@ -5,6 +5,7 @@ import './MessagesList.css';
 
 export const MessagesList = () => {
   const messages = useSelector((state) => state.messages);
+  const user = useSelector((state) => state.user);
 
   return (
     <ul className="MessagesList">
@@ -14,6 +15,7 @@ export const MessagesList = () => {
           username={message.username}
           timestamp={message.timestamp}
           text={message.text}
+          toRight={message.id === user.id}
         />
       ))}
     </ul>

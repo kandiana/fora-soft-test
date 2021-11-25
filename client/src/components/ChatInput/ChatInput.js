@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { sendMessage } from '../../store/thunks/messages';
 
 import { Button } from '../Button/Button';
-import { Input } from '../Input/Input';
 
 import './ChatInput.css';
 
@@ -13,9 +12,11 @@ export const ChatInput = () => {
   const [message, setMessage] = useState('');
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    if (event) {
+      event.preventDefault();
+    }
 
-    dispatch(sendMessage(message));
+    dispatch(sendMessage(message.trim()));
 
     setMessage('');
   };
@@ -24,13 +25,22 @@ export const ChatInput = () => {
     setMessage(event.currentTarget.value);
   };
 
+  const handleKeyPress = (event) => {
+    if (event.code === 'Enter' && !event.shiftKey && message.trim()) {
+      event.preventDefault();
+      handleSubmit();
+    }
+  };
+
   return (
     <form className="ChatInput" onSubmit={handleSubmit}>
-      <Input
+      <textarea
+        className="ChatInput__input"
         id="message"
         name="message"
         value={message}
         onChange={handleChange}
+        onKeyPress={handleKeyPress}
       />
       <Button>Send</Button>
     </form>

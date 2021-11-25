@@ -29,11 +29,9 @@ module.exports = (server, db) => {
           _id: 'users',
           ...userData,
         });
-
-        return;
+      } else {
+        await addDataToDocument(db, clientRoom, 'users', userData);
       }
-
-      await addDataToDocument(db, clientRoom, 'users', userData);
 
       io.to(clientRoom).emit('new user', JSON.stringify(userData));
     });
@@ -47,8 +45,6 @@ module.exports = (server, db) => {
         });
 
         io.to(clientRoom).emit('user disconnected', clientId);
-      } else {
-        console.log('problem');
       }
     });
 

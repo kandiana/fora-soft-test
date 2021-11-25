@@ -14,8 +14,10 @@ export const ChatPage = ({ room }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getOldMessages(room));
-    dispatch(getUsersOnline(room));
+    if (room) {
+      dispatch(getOldMessages(room));
+      dispatch(getUsersOnline(room));
+    }
   }, [dispatch, room]);
 
   return (

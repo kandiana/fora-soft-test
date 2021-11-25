@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route
           path="/:room"
-          element={user.room ? <ChatPage room={user.room} /> : <StartPage />}
+          element={user.name ? <ChatPage room={user.room} /> : <StartPage />}
         />
         <Route path="/" element={<StartPage />} />
       </Routes>

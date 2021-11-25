@@ -1,8 +1,14 @@
 .Message {
-  width: fit-content;
+  width: 100%;
   margin: 5px 0;
   padding: 5px 10px;
   border-radius: 15px;
+}
+
+.Message_right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .Message__header {
@@ -19,4 +25,15 @@
 .Message__timestamp {
   font-size: 12px;
   opacity: 0.6;
+}
+
+.Message__text {
+  display: block;
+  width: 80%;
+  border: none;
+  resize: none;
+}
+
+.Message_right .Message__text {
+  text-align: right;
 }

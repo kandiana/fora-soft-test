@@ -10,6 +10,7 @@ export const sendMessage = (text) => {
 
     const message = {
       username: state.user.name,
+      id: state.user.id,
       timestamp: Date.now(),
       text,
     };
