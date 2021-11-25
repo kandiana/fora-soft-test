@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 
-import { createSocketInstance } from '../../store/thunk';
+import { createSocketInstance } from '../../store/thunks/socket';
 
 import { Input } from '../../components/Input/Input';
 import { Button } from '../../components/Button/Button';
@@ -22,7 +22,7 @@ export const StartPage = () => {
 
     const userRoom = room || nanoid();
 
-    dispatch(createSocketInstance(username, userRoom));
+    dispatch(createSocketInstance({ username, room: userRoom, create: !room }));
 
     navigate(`/${userRoom}`);
   };

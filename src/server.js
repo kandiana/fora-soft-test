@@ -4,7 +4,7 @@ const express = require('express');
 const mongoClient = require('./db');
 const setupMiddlewares = require('./middlewares');
 
-const { mainRouter } = require('./routers');
+const { mainRouter, apiRouter } = require('./routers');
 
 const app = express();
 
@@ -24,4 +24,5 @@ app.use((req, res, next) => {
 setupMiddlewares(app);
 
 // setup routes
+app.use('/api', apiRouter); // front
 app.use('/', mainRouter); // front

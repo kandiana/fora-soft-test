@@ -11,7 +11,10 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/:room" element={user ? <ChatPage /> : <StartPage />} />
+        <Route
+          path="/:room"
+          element={user.room ? <ChatPage room={user.room} /> : <StartPage />}
+        />
         <Route path="/" element={<StartPage />} />
       </Routes>
     </div>

@@ -1,14 +1,31 @@
-import { applyMiddleware, createStore } from 'redux';
+import { applyMiddleware, createStore, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 
-import { reducer, INITIAL_STATE } from './reducer';
+import { messagesReducer } from './reducers/messages';
+import { socketReducer } from './reducers/socket';
+import { userReducer } from './reducers/user';
+import { usersOnlineReducer } from './reducers/usersOnline';
+
+const rootReducer = combineReducers({
+  user: userReducer,
+  socket: socketReducer,
+  messages: messagesReducer,
+  usersOnline: usersOnlineReducer,
+});
+
+const INITIAL_STATE = {
+  user: {},
+  socket: null,
+  messages: [],
+  usersOnline: {},
+};
 
 export const store = createStore(
-  reducer,
+  rootReducer,
   INITIAL_STATE,
   applyMiddleware(thunk)
 );
 
-store.subscribe(() => {
-  console.log(store.getState());
-});
+// store.subscribe(() => {
+//   console.log(store.getState());
+// });

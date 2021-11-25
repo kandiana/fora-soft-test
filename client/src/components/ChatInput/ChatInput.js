@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { sendMessage } from '../../store/actions';
+import { sendMessage } from '../../store/thunks/messages';
 
 import { Button } from '../Button/Button';
 import { Input } from '../Input/Input';

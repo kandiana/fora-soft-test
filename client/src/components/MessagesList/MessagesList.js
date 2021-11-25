@@ -4,7 +4,7 @@ import { Message } from '../Message/Message';
 import './MessagesList.css';
 
 export const MessagesList = () => {
-  const messages = useSelector((state) => state.messagesList);
+  const messages = useSelector((state) => state.messages);
 
   return (
     <ul className="MessagesList">

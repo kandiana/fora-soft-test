@@ -10,16 +10,32 @@ export const UsersList = () => {
       return;
     }
 
-    return Object.keys(users).map((key) => (
-      <p
-        className={`UsersList__item ${
-          userData.id === key ? 'UsersList__you' : ''
-        }`}
-        key={key}
-      >
-        {users[key]}
-      </p>
-    ));
+    const userNames = Object.keys(users).map((key) => users[key]);
+    console.log(userNames.sort());
+
+    return Object.keys(users)
+      .map((key) => [key, users[key]])
+      .sort((a, b) => {
+        if (a[1].toLowerCase() < b[1].toLowerCase()) {
+          return -1;
+        }
+
+        if (a[1].toLowerCase() > b[1].toLowerCase()) {
+          return 1;
+        }
+
+        return a[1] < b[1] ? 1 : -1;
+      })
+      .map(([key, value]) => (
+        <p
+          className={`UsersList__item ${
+            userData.id === key ? 'UsersList__you' : ''
+          }`}
+          key={key}
+        >
+          {value}
+        </p>
+      ));
   };
 
   return (
