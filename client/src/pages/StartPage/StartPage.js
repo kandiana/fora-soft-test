@@ -30,7 +30,7 @@ export const StartPage = () => {
   };
 
   const handleChange = (event) => {
-    setUsername(event.currentTarget.value);
+    setUsername(event.currentTarget.value.substring(0, 20));
   };
 
   return (

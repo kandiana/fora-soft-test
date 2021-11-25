@@ -25,6 +25,7 @@ export const ChatInput = () => {
     setMessage(event.currentTarget.value);
   };
 
+  // send message on Enter, add line on shift+Enter
   const handleKeyPress = (event) => {
     if (event.code === 'Enter' && !event.shiftKey && message.trim()) {
       event.preventDefault();
