@@ -1,0 +1,22 @@
+.Message {
+  width: fit-content;
+  margin: 5px 0;
+  padding: 5px 10px;
+  border-radius: 15px;
+}
+
+.Message__header {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 5px;
+}
+
+.Message__author {
+  margin-right: 10px;
+  font-weight: 700;
+}
+
+.Message__timestamp {
+  font-size: 12px;
+  opacity: 0.6;
+}

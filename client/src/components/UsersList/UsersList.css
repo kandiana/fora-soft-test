@@ -1,0 +1,15 @@
+.UsersList {
+  min-width: 200px;
+  width: 10%;
+  height: 100%;
+  padding: 10px;
+  list-style: none;
+}
+
+.UsersList__title {
+  margin-bottom: 10px;
+}
+
+.UsersList__you {
+  font-weight: 700;
+}

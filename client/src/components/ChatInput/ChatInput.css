@@ -1,0 +1,28 @@
+.ChatInput {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+/* .ChatInput__input {
+  flex-grow: 1;
+  height: 100px;
+  width: 100%;
+  margin-right: 5px;
+  padding: 5px 10px;
+  border: 2px solid gray;
+  border-radius: 10px;
+  resize: none;
+}
+
+.ChatInput__input:focus {
+  border-color: black;
+} */
+
+.ChatInput .Input {
+  margin: 0 5px 0 0;
+}
+
+.ChatInput .Button {
+  align-self: flex-end;
+}

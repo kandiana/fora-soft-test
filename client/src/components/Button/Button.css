@@ -1,0 +1,15 @@
+.Button {
+  height: 40px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.Button:hover {
+  background-color: gray;
+  color: white;
+}
+
+.Button:focus {
+  border-color: gray;
+}
