@@ -1,4 +1,5 @@
 const { Server } = require('socket.io');
+const { ROOM_DELETE_TIMEOUT } = require('../config');
 const {
   insertDataToDB,
   addDataToDocument,
@@ -7,6 +8,7 @@ const {
 
 module.exports = (server, db) => {
   const io = new Server(server);
+  const timers = {};
 
   io.on('connection', (socket) => {
     console.log('a user connected');
@@ -20,8 +22,7 @@ module.exports = (server, db) => {
 
       clientRoom = room;
       socket.join(clientRoom);
-
-      socket.emit('id', clientId);
+      clearTimeout(timers[clientRoom]);
 
       const userData = { [clientId]: username };
 
@@ -34,6 +35,7 @@ module.exports = (server, db) => {
         await addDataToDocument(db, clientRoom, 'users', userData);
       }
 
+      socket.emit('id', clientId);
       io.to(clientRoom).emit('new user', JSON.stringify(userData));
     });
 
@@ -47,13 +49,27 @@ module.exports = (server, db) => {
         });
 
         io.to(clientRoom).emit('user disconnected', clientId);
+
+        const clients = io.sockets.adapter.rooms.get(clientRoom);
+
+        // if no one is left, wait a minute for reconnection and if there's still no one delete chat
+        if (!clients) {
+          const timer = setTimeout(() => {
+            const newClients = io.sockets.adapter.rooms.get(clientRoom);
+
+            if (!newClients) {
+              db.collection(clientRoom).drop();
+              console.log(`room ${clientRoom} is closed`);
+            }
+          }, ROOM_DELETE_TIMEOUT);
+
+          timers[clientRoom] = timer;
+        }
       }
     });
 
     // on new message save it to db and broadcast it to everyone in the room
     socket.on('chat message', async (message) => {
-      console.log(`message: ${message}`);
-
       await insertDataToDB(db, clientRoom, JSON.parse(message));
 
       socket.broadcast.to(clientRoom).emit('chat message', message);

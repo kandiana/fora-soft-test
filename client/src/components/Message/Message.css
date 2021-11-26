@@ -5,10 +5,8 @@
   border-radius: 15px;
 }
 
-.Message_right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+.Message_you {
+  background-color: #ddd;
 }
 
 .Message__header {
@@ -29,11 +27,8 @@
 
 .Message__text {
   display: block;
-  width: 80%;
+  width: 100%;
   border: none;
   resize: none;
-}
-
-.Message_right .Message__text {
-  text-align: right;
+  background-color: inherit;
 }

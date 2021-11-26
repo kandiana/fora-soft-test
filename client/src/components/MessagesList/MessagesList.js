@@ -16,7 +16,7 @@ export const MessagesList = () => {
           username={message.username}
           timestamp={message.timestamp}
           text={message.text}
-          toRight={message.id === user.id}
+          usersMessage={message.id === user.id}
         />
       ))}
     </ul>
