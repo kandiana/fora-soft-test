@@ -1,4 +1,5 @@
 const { Server } = require('socket.io');
+const { ROOM_DELETE_TIMEOUT } = require('../config');
 const {
   insertDataToDB,
   addDataToDocument,
@@ -60,7 +61,7 @@ module.exports = (server, db) => {
               db.collection(clientRoom).drop();
               console.log(`room ${clientRoom} is closed`);
             }
-          }, 60000);
+          }, ROOM_DELETE_TIMEOUT);
 
           timers[clientRoom] = timer;
         }
@@ -69,8 +70,6 @@ module.exports = (server, db) => {
 
     // on new message save it to db and broadcast it to everyone in the room
     socket.on('chat message', async (message) => {
-      console.log(`message: ${message}`);
-
       await insertDataToDB(db, clientRoom, JSON.parse(message));
 
       socket.broadcast.to(clientRoom).emit('chat message', message);
