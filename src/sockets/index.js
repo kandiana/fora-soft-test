@@ -21,8 +21,6 @@ module.exports = (server, db) => {
       clientRoom = room;
       socket.join(clientRoom);
 
-      socket.emit('id', clientId);
-
       const userData = { [clientId]: username };
 
       if (create) {
@@ -34,6 +32,7 @@ module.exports = (server, db) => {
         await addDataToDocument(db, clientRoom, 'users', userData);
       }
 
+      socket.emit('id', clientId);
       io.to(clientRoom).emit('new user', JSON.stringify(userData));
     });
 

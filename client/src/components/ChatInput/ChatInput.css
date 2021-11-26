@@ -4,15 +4,23 @@
   padding: 10px;
 }
 
-.ChatInput__input {
+.ChatInput__input-container {
   flex-grow: 1;
-  height: 100px;
+  min-height: 26px;
+  max-height: 30vh;
   width: 100%;
   margin-right: 5px;
   padding: 5px 10px;
   border: 2px solid gray;
   border-radius: 10px;
+  overflow-y: auto;
+}
+
+.ChatInput__input {
+  border: none;
   resize: none;
+  width: 100%;
+  font-size: 14px;
 }
 
 .ChatInput__input:focus {
