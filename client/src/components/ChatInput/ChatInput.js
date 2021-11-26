@@ -44,6 +44,7 @@ export const ChatInput = () => {
     <form className="ChatInput" onSubmit={handleSubmit}>
       <div className="ChatInput__input-container">
         <TextareaAutosize
+          maxRows={10}
           className="ChatInput__input"
           id="message"
           name="message"

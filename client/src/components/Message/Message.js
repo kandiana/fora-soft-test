@@ -1,5 +1,4 @@
 import { useRef, useState, useEffect } from 'react';
-
 import { format } from 'date-fns';
 
 import './Message.css';
@@ -7,7 +6,7 @@ import './Message.css';
 export const Message = ({ username, timestamp, text, usersMessage }) => {
   const textareaRef = useRef(null);
   const formattedTimestamp = format(timestamp, 'dd.MM, HH:mm');
-  const [height, setHeight] = useState(0);
+  const [height, setHeight] = useState(20);
 
   useEffect(() => {
     if (textareaRef.current) {
@@ -25,7 +24,7 @@ export const Message = ({ username, timestamp, text, usersMessage }) => {
         className="Message__text"
         readOnly
         value={text}
-        style={{ height: `${height}px` }}
+        style={{ height: `${height + 1}px` }} // +1 is just in case, some browsers showed scroll...
         ref={textareaRef}
       />
     </li>
