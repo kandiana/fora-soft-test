@@ -7,6 +7,7 @@ const {
 
 module.exports = (server, db) => {
   const io = new Server(server);
+  const timers = {};
 
   io.on('connection', (socket) => {
     console.log('a user connected');
@@ -20,6 +21,7 @@ module.exports = (server, db) => {
 
       clientRoom = room;
       socket.join(clientRoom);
+      clearTimeout(timers[clientRoom]);
 
       const userData = { [clientId]: username };
 
@@ -46,6 +48,22 @@ module.exports = (server, db) => {
         });
 
         io.to(clientRoom).emit('user disconnected', clientId);
+
+        const clients = io.sockets.adapter.rooms.get(clientRoom);
+
+        // if no one is left, wait a minute for reconnection and if there's still no one delete chat
+        if (!clients) {
+          const timer = setTimeout(() => {
+            const newClients = io.sockets.adapter.rooms.get(clientRoom);
+
+            if (!newClients) {
+              db.collection(clientRoom).drop();
+              console.log(`room ${clientRoom} is closed`);
+            }
+          }, 60000);
+
+          timers[clientRoom] = timer;
+        }
       }
     });
 
